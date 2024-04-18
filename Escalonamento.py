@@ -4,7 +4,7 @@ TAMANHO = 1000
 CILINDRO = 5000
 
 def acesso_processo(TAMANHO):
-  return [random.randint(0, CILINDRO - 1) for _ in range (TAMANHO)]
+    return [random.randint(0, CILINDRO - 1) for _ in range(TAMANHO)]
 
 def fcfs(acessos):
     posicao_atual = 0
@@ -65,8 +65,8 @@ for tamanho in lista_tamanho:
     resultado_fcfs = fcfs(sequencia_acessos[:tamanho])
 
     # Resultados para o SCAN
-    resultado_scan = scan(sequencia_acessos[:tamanho], lista_tamanho)
+    resultado_scan = scan(sequencia_acessos[:tamanho], tamanho)
 
     # Imprimir os resultados para o tamanho de fila atual
     print(f"Tamanho da fila: {tamanho}")
-    print(f"""FCFS: {resultado_fcfs}\nSCAN: {resultado_scan}\n""")
+    print(f"FCFS: {resultado_fcfs}\nSCAN: {resultado_scan}\n")
