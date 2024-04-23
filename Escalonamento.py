@@ -4,73 +4,93 @@ TAMANHO = 1000
 CILINDRO = 5000
 
 def acesso_processo(TAMANHO):
-  return [random.randint(0, CILINDRO - 1) for _ in range (TAMANHO)]
+    return [random.randint(0, CILINDRO - 1) for _ in range(TAMANHO)]
 
-def fcfs(acesso_processo):
+def fcfs(acessos, taman_fila):
     posicao_atual = 0
     cilindros_percorridos = 0
-    processos_restantes = list(acesso_processo)  # Cria uma cópia da lista original
+    qntdFila = acessos[:taman_fila]
+    print("qntdFila:", qntdFila)
 
-    for processo in processos_restantes:
-        distancia = abs(processo - posicao_atual)
-        cilindros_percorridos += distancia
-        posicao_atual = processo
+    for i in range(len(qntdFila) - 1):
+        processos = qntdFila[i]
+        prox_processos = qntdFila[i + 1]
+
+        print(f"Processo atual: {processos}, Próximo processo: {prox_processos}")
+        
+        
+        if prox_processos > processos:
+            subvetor = qntdFila[i + 1:]
+            print(f"Subvetor: {subvetor}")
+            minimum = min(subvetor)
+
+            if prox_processos == minimum:
+                distancia = prox_processos - posicao_atual
+                cilindros_percorridos += distancia
+                posicao_atual = processos
+                print(cilindros_percorridos)
+            else:
+                print("Próximo processo não é o menor. Continuando para o próximo processo.")
+                continue
+        else:
+            print("Condição não atendida. Continuando para o próximo processo.")
+
+            continue
 
     return cilindros_percorridos
 
-def scan(acesso_processo):
-    posicao_atual1 = 0
-    cilindros_percorridos1 = 0
-    processos_restantes = list(acesso_processo)  # Cria uma cópia da lista original
-    processos_restantes.sort()  # Ordena os processos em ordem crescente
-    
-    direcao = -1  # Iniciar em direção decrescente
+'''
+def scan(acessos, tamanho_fila):
+    posicao_atual = 0
+    cilindros_percorridos = 0
+    processos_restantes = list(acessos)  # Cria uma cópia da lista original
+    fila = processos_restantes[:tamanho_fila]  # Inicializa a fila com os primeiros elementos
+    processos_restantes = processos_restantes[tamanho_fila:]  # Remove os elementos já na fila
 
-    while processos_restantes:
-        if direcao == -1:
-            proximos_processos = [p for p in processos_restantes if p <= posicao_atual1]
+    direcao = 1  # Iniciar em direção decrescente
+
+    while fila:
+        if direcao == 1:
+            proximos_processos = [p for p in fila if p >= posicao_atual]
             if proximos_processos:
-                distancia1 = abs(proximos_processos[-1] - posicao_atual1)
-                cilindros_percorridos1 += distancia1
-                posicao_atual1 = proximos_processos[-1]
-                processos_restantes.remove(proximos_processos[-1])
+                distancia = abs(proximos_processos[0] - posicao_atual)
+                cilindros_percorridos += distancia
+                posicao_atual = proximos_processos[0]
+                fila.remove(proximos_processos[0])
+                if processos_restantes:  # Se ainda há processos restantes
+                    fila.append(processos_restantes.pop(0))  # Adiciona o próximo processo à fila
             else:
-                direcao = 1  # Mudar para direção crescente
+                direcao = -1  # Mudar para direção crescente
         else:
-            proximos_processos = [p for p in processos_restantes if p >= posicao_atual1]
+            proximos_processos = [p for p in fila if p <= posicao_atual]
             if proximos_processos:
-                distancia1 = abs(proximos_processos[0] - posicao_atual1)
-                cilindros_percorridos1 += distancia1
-                posicao_atual1 = proximos_processos[0]
-                processos_restantes.remove(proximos_processos[0])
+                distancia = abs(proximos_processos[-1] - posicao_atual)
+                cilindros_percorridos += distancia
+                posicao_atual = proximos_processos[-1]
+                fila.remove(proximos_processos[-1])
+                if processos_restantes:  # Se ainda há processos restantes
+                    fila.append(processos_restantes.pop(0))  # Adiciona o próximo processo à fila
             else:
                 direcao = -1  # Mudar para direção decrescente
 
-    return cilindros_percorridos1
-
-
+    return cilindros_percorridos
 '''
-def c_scan(acesso_processo):
-  return
-'''
-  
 # Lista de tamanhos de fila desejados
-lista_tamanho = [10, 20, 50, 100, 200, 500, 1000]
+lista_tamanho = [10]
 
 # Gerar sequência aleatória de acessos
-sequencia_acessos = acesso_processo(1000)
+sequencia_acessos = acesso_processo(TAMANHO)
 
 for tamanho in lista_tamanho:
     # Resultados para o FCFS
-    resultado_fcfs = fcfs(acesso_processo,tamanho)
-
+    resultado_fcfs = fcfs(sequencia_acessos, tamanho)
+    print(f"Tamanho da fila: {tamanho}")
+    print(f"FCFS: {resultado_fcfs}\n")
+    #print(f"SCAN: {resultado_scan}\n")
+'''
     # Resultados para o SCAN
-    resultado_scan = scan(sequencia_acessos[:tamanho])
-
-    # Resultados para o C-SCAN
-   # resultado_cscan = c_scan(sequencia_acessos[:tamanho])
+    resultado_scan = scan(sequencia_acessos, tamanho)
 
     # Imprimir os resultados para o tamanho de fila atual
-    print(f"Tamanho da fila: {tamanho}")
-    print(f"""FCFS: {resultado_fcfs}\nSCAN: {resultado_scan}\n""")
-           
+'''
+   
