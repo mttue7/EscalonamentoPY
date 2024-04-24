@@ -11,22 +11,20 @@ def fcfs(acessos, tamanho_fila):
     cilindros_percorridos = 0
     qntd_Fila = acessos[:tamanho_fila]
 
-    for i in range(len(qntd_Fila)-1):
-
-        processo = qntd_Fila[i]
-        prox_processos = qntd_Fila[i+1]
-
-        print(qntd_Fila)
+    for i in range(len(acessos)):
+        processo = qntd_Fila[0]  # Pega o primeiro elemento da fila
         distancia = abs(processo - posicao_atual)
         cilindros_percorridos += distancia
-        posicao_atual = prox_processos
+        posicao_atual = processo
 
         # Remover o primeiro elemento da fila
         qntd_Fila.pop(0)
-        qntd_Fila.append(acessos[tamanho_fila + i])
+
+        # Adicionar o próximo elemento dos acessos
+        if i + tamanho_fila < len(acessos):
+            qntd_Fila.append(acessos[i + tamanho_fila])
 
     return cilindros_percorridos
-
 '''
 def scan(acessos, taman_fila):
     posicao_atual = 0
@@ -58,7 +56,7 @@ def scan(acessos, taman_fila):
     return cilindros_percorridos
 '''
 # Lista de tamanhos de fila desejados
-lista_tamanho = [10]
+lista_tamanho = [10,20,50,100,200,500,1000]
 
 # Gerar sequência aleatória de acessos
 sequencia_acessos = acesso_processo(TAMANHO)
