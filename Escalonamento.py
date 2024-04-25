@@ -1,6 +1,6 @@
 import random
 
-TAMANHO = 20
+TAMANHO = 5000
 CILINDRO = 5000
 
 def acesso_processo(TAMANHO):
@@ -52,12 +52,12 @@ def fcfs(acessos, tamanho_fila):
     return cilindros_percorridos
 
 def scan(acessos, taman_fila):
-    print(acessos)
+    #print(acessos)
     posicao_atual = 0
     ValorEscalonado = 0
     cilindrosPercorridos = 0
     qntdFila = acessos[:taman_fila]
-    print("qntdFila:", qntdFila)
+    #print("qntdFila:", qntdFila)
     sentido = 1
     
 
@@ -72,9 +72,9 @@ def scan(acessos, taman_fila):
     
 
 
-        print("Esse é o vetor",qntdFila)
-        print("O valor escalonado é",qntdFila[ValorEscalonado],"e sua posição atual é",posicao_atual )
-        print(cilindrosPercorridos)
+        #print("Esse é o vetor",qntdFila)
+        #print("O valor escalonado é",qntdFila[ValorEscalonado],"e sua posição atual é",posicao_atual )
+        #print(cilindrosPercorridos)
         posicao_atual = qntdFila[ValorEscalonado]
         
         #Se o vetor de acessos ainda estiver com requisições, substitui o valor escalonado pelo novo valor
@@ -88,17 +88,17 @@ def scan(acessos, taman_fila):
         if qntdFila:
             #Se o escalonador estiver indo para a direita e o maior elemento já estiver escalonado, troca de sentido
             if(max(qntdFila)<posicao_atual and sentido == 1):
-                print(max(qntdFila))
+                #print(max(qntdFila))
                 sentido = -1
                 cilindrosPercorridos += (TAMANHO -posicao_atual)
                 posicao_atual = CILINDRO
-                print("o sentido agora é para esquerda")
-                print(posicao_atual)
+                #print("o sentido agora é para esquerda")
+                #print(posicao_atual)
             #Se escalonador escalonador estiver indo para esquerda e o menor elemento já estiver escalonado, troca de sentido
             elif(min(qntdFila)>posicao_atual and sentido == -1):
                 sentido = 1
                 cilindrosPercorridos +=posicao_atual
-                print("o sentido agora é para direita")
+                #print("o sentido agora é para direita")
                 posicao_atual = 0
             
  
@@ -108,13 +108,13 @@ def scan(acessos, taman_fila):
 
 
 def cscan(acessos, taman_fila):
-    print(acessos)
+    #print(acessos)
     posicao_atual = 0
     ValorEscalonado = 0
     cilindrosPercorridos = 0
     cilindroFisico = 0
     qntdFila = acessos[:taman_fila]
-    print("qntdFila:", qntdFila)
+    #print("qntdFila:", qntdFila)
     
 
     for j in range(TAMANHO): 
@@ -122,11 +122,12 @@ def cscan(acessos, taman_fila):
         ValorEscalonado = menorValorComp(qntdFila,posicao_atual)
         cilindrosPercorridos += (qntdFila[ValorEscalonado] - posicao_atual)
         cilindroFisico += (qntdFila[ValorEscalonado] - posicao_atual)
-        print(cilindrosPercorridos)
+        #print(cilindrosPercorridos)
         
 
-        print("Esse é o vetor",qntdFila)
-        print("O valor escalonado é",qntdFila[ValorEscalonado],"e sua posição atual é",posicao_atual )
+        #print("Esse é o vetor",qntdFila)
+        #print("O valor escalonado é",qntdFila[ValorEscalonado],"e sua posição atual é",posicao_atual )
+        
         posicao_atual = qntdFila[ValorEscalonado]
         
          #Se o vetor de acessos ainda estiver com requisições, substitui o valor escalonado pelo novo valor
@@ -149,7 +150,7 @@ def cscan(acessos, taman_fila):
 
 
 # Lista de tamanhos de fila desejados
-lista_tamanho = [10,20,50]
+lista_tamanho = [10,20,50,100,200,500,1000]
 
 # Gerar sequência aleatória de acessos
 sequencia_acessos = acesso_processo(TAMANHO)
