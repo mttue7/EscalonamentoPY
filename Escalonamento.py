@@ -124,8 +124,6 @@ def cscan(acessos, taman_fila):
                 posicao_atual = min(qntdFila)
                 cilindroFisico += CILINDRO
             
- 
-
     return cilindrosPercorridos, cilindroFisico
 
 
