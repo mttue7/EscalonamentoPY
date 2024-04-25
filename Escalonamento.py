@@ -1,5 +1,16 @@
 import random
 '''
+          ~~ Componentes do Grupo: ~~
+----------------------------------------------------
+|  Augusto Guaschi Morato        |   RA: 22008248  |
+|  Daniel Scanavini Rossi        |   RA: 22000787  |
+|  Lucas Magaldi                 |   RA: 22004139  |
+|  Lucas Valerio Berti           |   RA: 22007440  |
+|  Mattheus Gonçalves Anitelli   |   RA: 22011982  |
+|  Vinicius Henrique Galassi     |   RA: 22005768  |
+----------------------------------------------------
+
+-> Saídas: 
 
 Tamanho da fila: 10
 FCFS: 1682821
@@ -42,6 +53,36 @@ FCFS: 1682821
 SCAN: 4999
 CSCAN: (4999, 4999) -> Cilindro virtual / Cilindro Fisico
 ===============================================================
+
+-> Perguntas e respostas:
+
+comente textualmente o que você observou sobre o comportamento dos algoritmos de 
+escalonamento de acordo com o tamanho da fila: que algoritmo(s) é(são) 
+melhor(es) em que situação(ões) e por quê?
+
+Resposta: 
+
+FCFS (First-Come, First-Served): Este algoritmo apresenta o mesmo valor para todos os tamanhos de fila. 
+Isso indica que o FCFS não é afetado pelo tamanho da fila, pois atende às solicitações na ordem 
+em que chegam, independentemente de sua localização no disco.
+
+SCAN (Elevator Algorithm): O tempo de SCAN diminui à medida que o tamanho da fila 
+aumenta, indicando uma otimização ao evitar longas viagens entre cilindros. 
+SCAN se beneficia de uma maior quantidade de pedidos, oferecendo tempos 
+de acesso menores, especialmente em filas maiores
+
+C-SCAN (Circular SCAN): Assim como o SCAN, o C-SCAN também mostra uma tendência de diminuição dos valores 
+à medida que o tamanho da fila aumenta. No entanto, o C-SCAN trata o disco como um cilindro circular e, 
+após atingir o final, retorna ao início. CSCAN evita a "starvation" de pedidos, fornecendo 
+tempos de acesso mais consistentes e previsíveis, especialmente em filas maiores.
+
+Conclusão: A escolha do melhor algoritmo depende do contexto e das necessidades do sistema.
+
+FCFS é ideal quando a ordem de chegada é o único critério importante.
+SCAN é eficiente em filas maiores para otimizar o movimento do braço do disco.
+CSCAN é preferível em sistemas com distribuição desigual de pedidos, evitando a 
+inanição e oferecendo tempos de acesso mais consistentes
+
 '''
 TAMANHO = 1000
 CILINDRO = 5000
