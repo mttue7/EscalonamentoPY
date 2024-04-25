@@ -73,8 +73,15 @@ de acesso menores, especialmente em filas maiores
 
 C-SCAN (Circular SCAN): Assim como o SCAN, o C-SCAN também mostra uma tendência de diminuição dos valores 
 à medida que o tamanho da fila aumenta. No entanto, o C-SCAN trata o disco como um cilindro circular e, 
-após atingir o final, retorna ao início. CSCAN evita a "starvation" de pedidos, fornecendo 
+após atingir o final, retorna ao início - no caso do braço físico, ele soma 5000 nessa volta devido passar
+por todos os elementos que variam de 0 a 4999. CSCAN evita a "starvation" de pedidos, fornecendo 
 tempos de acesso mais consistentes e previsíveis, especialmente em filas maiores.
+
+Interessante notar que no ultimo tamanho, que seria de 1000 entradas (o vetor acesso inteiro),
+tanto o SCAN quanto o C-SCAN (seja o lógico ou o físico) possuem o mesmo valor de saída.
+Isso ocorre devido que a validação dos elementos ocorre apenas em um sentido, 
+sem ter a necessidade de retornar ao 0 (no caso do C-SCAN) e nem de mudar a direção do braço 
+(no caso do SCAN) ja que o tamanho do subvetor é o mesmo do vetor original
 
 Conclusão: A escolha do melhor algoritmo depende do contexto e das necessidades do sistema.
 
