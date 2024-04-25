@@ -80,10 +80,10 @@ def scan(acessos, taman_fila):
             #Se o escalonador estiver indo para a direita e o maior elemento já estiver escalonado, troca de sentido
             if(max(qntdFila)<posicao_atual and sentido == 1):
                 sentido = -1
-                cilindrosPercorridos += (TAMANHO -posicao_atual)
+                cilindrosPercorridos += (CILINDRO -posicao_atual)
                 posicao_atual = CILINDRO
                 
-            #Se escalonador escalonador estiver indo para esquerda e o menor elemento já estiver escalonado, troca de sentido
+            #Se escalonador estiver indo para esquerda e o menor elemento já estiver escalonado, troca de sentido
             elif(min(qntdFila)>posicao_atual and sentido == -1):
                 sentido = 1
                 cilindrosPercorridos +=posicao_atual
@@ -121,7 +121,9 @@ def cscan(acessos, taman_fila):
             #Verificando se o maior valor já foi escalonado
             if(max(qntdFila)<posicao_atual):
                 #Volta o escalonador para 0 e adiciona o movimento fisico
-                posicao_atual = min(qntdFila)
+                cilindrosPercorridos += (CILINDRO - posicao_atual)
+                cilindroFisico += (CILINDRO - posicao_atual)
+                posicao_atual = 0
                 cilindroFisico += CILINDRO
             
     return cilindrosPercorridos, cilindroFisico
