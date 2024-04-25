@@ -1,5 +1,48 @@
 import random
+'''
 
+Tamanho da fila: 10
+FCFS: 1682821
+SCAN: 334489
+CSCAN: (249489, 494489) -> Cilindro virtual / Cilindro Fisico
+===============================================================
+
+Tamanho da fila: 20
+FCFS: 1682821
+SCAN: 169724
+CSCAN: (125276, 250276) -> Cilindro virtual / Cilindro Fisico
+===============================================================
+
+Tamanho da fila: 50
+FCFS: 1682821
+SCAN: 69999
+CSCAN: (52899, 102899) -> Cilindro virtual / Cilindro Fisico
+===============================================================
+
+Tamanho da fila: 100
+FCFS: 1682821
+SCAN: 34951
+CSCAN: (27923, 52923) -> Cilindro virtual / Cilindro Fisico
+===============================================================
+
+Tamanho da fila: 200
+FCFS: 1682821
+SCAN: 19995
+CSCAN: (15647, 30647) -> Cilindro virtual / Cilindro Fisico
+===============================================================
+
+Tamanho da fila: 500
+FCFS: 1682821
+SCAN: 9994
+CSCAN: (8140, 13140) -> Cilindro virtual / Cilindro Fisico
+===============================================================
+
+Tamanho da fila: 1000
+FCFS: 1682821
+SCAN: 4999
+CSCAN: (4999, 4999) -> Cilindro virtual / Cilindro Fisico
+===============================================================
+'''
 TAMANHO = 1000
 CILINDRO = 5000
 
