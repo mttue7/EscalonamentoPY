@@ -139,12 +139,12 @@ for tamanho in lista_tamanho:
     resultado_fcfs = fcfs(sequencia_acessos, tamanho)
     resultadoScan = scan(sequencia_acessos,tamanho)
     resultadoCscan = cscan(sequencia_acessos,tamanho)
-    print(f"Tamanho da fila: {tamanho}\n")
-    print(f"FCFS: {resultado_fcfs}\n")
-    print(f"SCAN: {resultadoScan}\n")
-    print(f"CSCAN: {resultadoCscan}\n")
+    print(f"\nTamanho da fila: {tamanho}")
+    print(f"FCFS: {resultado_fcfs}")
+    print(f"SCAN: {resultadoScan}")
+    print(f"CSCAN: {resultadoCscan} -> Cilindro virtual / Cilindro Fisico")
 
-    print("=================================\n")
+    print("===============================================================")
 
 
    
