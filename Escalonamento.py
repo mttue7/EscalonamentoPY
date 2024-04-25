@@ -1,6 +1,6 @@
 import random
 
-TAMANHO = 20
+TAMANHO = 1000
 CILINDRO = 5000
 
 def acesso_processo(TAMANHO):
@@ -29,8 +29,6 @@ def maiorValorComp(vetor,valorComparado):
                 
     return maiorValor
 
-
-
 def fcfs(acessos, tamanho_fila):
     posicao_atual = 0
     cilindros_percorridos = 0
@@ -52,12 +50,10 @@ def fcfs(acessos, tamanho_fila):
     return cilindros_percorridos
 
 def scan(acessos, taman_fila):
-    print(acessos)
     posicao_atual = 0
     ValorEscalonado = 0
     cilindrosPercorridos = 0
     qntdFila = acessos[:taman_fila]
-    print("qntdFila:", qntdFila)
     sentido = 1
     
 
@@ -70,11 +66,6 @@ def scan(acessos, taman_fila):
 
         cilindrosPercorridos += abs(qntdFila[ValorEscalonado] - posicao_atual)
     
-
-
-        print("Esse é o vetor",qntdFila)
-        print("O valor escalonado é",qntdFila[ValorEscalonado],"e sua posição atual é",posicao_atual )
-        print(cilindrosPercorridos)
         posicao_atual = qntdFila[ValorEscalonado]
         
         #Se o vetor de acessos ainda estiver com requisições, substitui o valor escalonado pelo novo valor
@@ -88,33 +79,27 @@ def scan(acessos, taman_fila):
         if qntdFila:
             #Se o escalonador estiver indo para a direita e o maior elemento já estiver escalonado, troca de sentido
             if(max(qntdFila)<posicao_atual and sentido == 1):
-                print(max(qntdFila))
                 sentido = -1
                 cilindrosPercorridos += (TAMANHO -posicao_atual)
                 posicao_atual = CILINDRO
-                print("o sentido agora é para esquerda")
-                print(posicao_atual)
+                
             #Se escalonador escalonador estiver indo para esquerda e o menor elemento já estiver escalonado, troca de sentido
             elif(min(qntdFila)>posicao_atual and sentido == -1):
                 sentido = 1
                 cilindrosPercorridos +=posicao_atual
-                print("o sentido agora é para direita")
                 posicao_atual = 0
             
  
-
     return cilindrosPercorridos
 
 
 
 def cscan(acessos, taman_fila):
-    print(acessos)
     posicao_atual = 0
     ValorEscalonado = 0
     cilindrosPercorridos = 0
     cilindroFisico = 0
     qntdFila = acessos[:taman_fila]
-    print("qntdFila:", qntdFila)
     
 
     for j in range(TAMANHO): 
@@ -122,11 +107,7 @@ def cscan(acessos, taman_fila):
         ValorEscalonado = menorValorComp(qntdFila,posicao_atual)
         cilindrosPercorridos += (qntdFila[ValorEscalonado] - posicao_atual)
         cilindroFisico += (qntdFila[ValorEscalonado] - posicao_atual)
-        print(cilindrosPercorridos)
         
-
-        print("Esse é o vetor",qntdFila)
-        print("O valor escalonado é",qntdFila[ValorEscalonado],"e sua posição atual é",posicao_atual )
         posicao_atual = qntdFila[ValorEscalonado]
         
          #Se o vetor de acessos ainda estiver com requisições, substitui o valor escalonado pelo novo valor
@@ -140,16 +121,16 @@ def cscan(acessos, taman_fila):
             #Verificando se o maior valor já foi escalonado
             if(max(qntdFila)<posicao_atual):
                 #Volta o escalonador para 0 e adiciona o movimento fisico
-                posicao_atual = 0
+                posicao_atual = min(qntdFila)
                 cilindroFisico += CILINDRO
             
  
 
-    return cilindrosPercorridos
+    return cilindrosPercorridos, cilindroFisico
 
 
 # Lista de tamanhos de fila desejados
-lista_tamanho = [10,20,50]
+lista_tamanho = [10,20,50,100,200,500,1000]
 
 # Gerar sequência aleatória de acessos
 sequencia_acessos = acesso_processo(TAMANHO)
@@ -160,10 +141,12 @@ for tamanho in lista_tamanho:
     resultado_fcfs = fcfs(sequencia_acessos, tamanho)
     resultadoScan = scan(sequencia_acessos,tamanho)
     resultadoCscan = cscan(sequencia_acessos,tamanho)
-    print(f"Tamanho da fila: {tamanho}")
+    print(f"Tamanho da fila: {tamanho}\n")
     print(f"FCFS: {resultado_fcfs}\n")
     print(f"SCAN: {resultadoScan}\n")
     print(f"CSCAN: {resultadoCscan}\n")
+
+    print("=================================\n")
 
 
    
