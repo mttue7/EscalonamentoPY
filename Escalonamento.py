@@ -1,4 +1,3 @@
-import random
 '''
           ~~ Componentes do Grupo: ~~
 ----------------------------------------------------
@@ -91,6 +90,9 @@ CSCAN é preferível em sistemas com distribuição desigual de pedidos, evitand
 inanição e oferecendo tempos de acesso mais consistentes
 
 '''
+
+import random
+
 TAMANHO = 1000
 CILINDRO = 5000
 
